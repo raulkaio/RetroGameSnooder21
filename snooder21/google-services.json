@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "474057173118",
+    "firebase_url": "https://solitairesnooder21motorola.firebaseio.com",
+    "project_id": "solitairesnooder21motorola",
+    "storage_bucket": "solitairesnooder21motorola.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474057173118:android:dbaadfe38d55d927",
+        "android_client_info": {
+          "package_name": "ru.exlmoto.snood21"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474057173118-sg8d1s88htvb00dtee98r9r5rchhcem9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW_dOH_krHPnfZdh41i_DPA1yLpynami4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

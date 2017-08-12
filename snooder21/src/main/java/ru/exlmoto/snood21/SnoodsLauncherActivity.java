@@ -33,6 +33,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,6 +44,10 @@ import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 public class SnoodsLauncherActivity extends Activity {
 
@@ -111,6 +116,8 @@ public class SnoodsLauncherActivity extends Activity {
 
     private static Vibrator vibrator = null;
     private static SoundPool soundPool = null;
+
+    private InterstitialAd mInterstitialAd;
 
     public void fillSettingsByLayout() {
         SnoodsSettings.vibration = vibrationCheckBox.isChecked();
@@ -285,6 +292,10 @@ public class SnoodsLauncherActivity extends Activity {
 
         setContentView(R.layout.activity_snoods_launcher);
 
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-5266434890042499/8490868119");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
         settingStorage = getSharedPreferences("ru.exlmoto.snood21", MODE_PRIVATE);
         // Check the first run
         boolean firstRun = false;
@@ -324,6 +335,11 @@ public class SnoodsLauncherActivity extends Activity {
             @Override
             public void onClick(View v) {
                 writeSettings();
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                        } else {
+                            Log.d("TAG", "The interstitial wasn't loaded yet.");
+                        }
 
                 Intent intent = new Intent(v.getContext(), SnoodsGameActivity.class);
                 startActivity(intent);
