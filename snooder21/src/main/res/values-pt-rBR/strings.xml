@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Retrô Snooder 21 Jogo de Cartas Motorola</string>
+    <string name="run_snood_button">JOGAR SNOODER 21!</string>
+    <string name="settings_label">Configurações</string>
+    <string name="vibration_check">Vibrar</string>
+    <string name="sound_check">Som</string>
+    <string name="toasts_check">Mostrar dicas</string>
+    <string name="fps_check">Mortrar taxa de vídeo</string>
+    <string name="scores_check">Salvar pontuações</string>
+    <string name="cover_desc">Capa do Snooder 21</string>
+    <string name="name_text">Insira seu nome:</string>
+    <string name="hint_text_edit">Digite seu nome</string>
+    <string name="player_text_edit">Jogador</string>
+    <string name="about_and_help_label"><![CDATA[Sobre e Como Jogar]]></string>
+    <string name="about_button">Sobre o jogo</string>
+    <string name="help_button">Como jogar</string>
+    <string name="demo_button">Demonstração</string>
+    <string name="high_score_label">Ranking</string>
+    <string name="players_list">Lista de jogadores</string>
+    <string name="scores_list">0</string>
+    <string name="animation_label">Velocidade das animações:</string>
+    <string name="version">v 17.08.12</string>
+    <string name="ok">OK</string>
+    <string name="icon_desc">Ícone Snooder 21</string>
+    <string name="theme_label">Tema</string>
+    <string name="theme_moto">Moto</string>
+    <string name="theme_paper">Paper</string>
+    <string name="toast_time_up">O tempo acabou!</string>
+    <string name="toast_hurry_up">Acelera!</string>
+    <string name="toast_game_over">Game over!</string>
+    <string name="toast_congrats">Parabéns! Você completou o jogo!</string>
+    <string name="toast_next_level">Você venceu! Aproveite o próximo jogo</string>
+    <string name="toast_high_score_ch1">Você fez:</string>
+    <string name="toast_high_score_ch2">pontos!</string>
+    <string name="toast_high_score_ch3">Salvando pontuação…</string>
+    <string name="help_string" tools:ignore="TypographyDashes">Use a tela sensível ao toque e arraste e solte o cartão de jogo para colocá-lo na coluna correspondente. Além disso, se você utilizar teclado físico pode apenas usar toques nas colunas e teclas 1, 2, 3, 4 no teclado físico. \n\nO objetivo é usar todos os cartões fazendo combinações de 21 em qualquer uma das 4 colunas. Se você tiver sucesso, você passa para o próximo nível. O deck NÃO é padrão: os desenhos são substituídos por Snooders (os monstrinhos do jogo). \n\nO nível fácil é de 32 cartas. O nível médio é de 45 cartas. Já os níveis Hard e Mal são de 58 cartas. O deck em cada nível inclui 6 cartas especiais (wild cards). Um wild card pode ser colocado em qualquer coluna e automaticamente completa 21 pontos. Se você completar 5 cartas em uma coluna e a soma for inferior a 21, você recebe o 21. Uma ÀS vale 1 ou 11. J, Q, K valem 10. \n\nQuando um 21 é feito, a coluna é esvaziada e pode ser usada para construir outro 21. Se um total da coluna for maior que 21, a coluna está congelada. Você deve jogar cartas até que o deck seja esvaziado, OU todas as colunas estão congeladas, OU o tempo tenha acabado. \n\nA pontuação de fazer um 21 vale mais da esquerda para a direita (100-400 pontos). \n\nVocê também ganha 50 pontos adicionais para cada carta colocada em uma coluna. Quando esvaziar as cartas do deck, você recebe 200 pontos de bônus para cada carta na tela. \n\nO jogo termina quando o tempo se esgotar (3 minutos) ou todas as 4 colunas estejam congeladas. No quarto nível do Mal, você ganha o jogo quando todas as cartas da plataforma forem usadas.</string>
+    <string name="about_string" tools:ignore="TypographyDashes">Esse jogo é um remake do mesmo jogo da Motorola: Snood™ 21.\nTraduzido para português e redesenhado por Raul Kaio\nraul@raulkaio.com.br\nhttp://raulkaio.com.br\n\n• © 2016 S. \"EXL\" KLS\ne-mail: exl@bk.ru\nemail: exlmotodev@gmail.com\n\nCódigo fonte:\nhttp://github.com/EXL/Snooder21\n\nArtigo sobre a criação do Snooder 21:\nhttp://exlmoto.ru/snooder21-droid\n\nObrigado ao:\n• Danil Medvedev pela criação;\n• Nikita Prokopchik pelas fotos;\n• Zorge.R pela hospedagem, paciência e ajuda.\n\nIdeia:\n• © 1996-2002 David M. Dobson e/ou Snood, LLC.\n\nEfeitos sonoros:\nhttps://github.com/EXL/Snooder21/blob/master/docs/Sounds_Licenses.txt</string>
+    <string name="antialiasing_check">Antialiasing</string>
+</resources>
