@@ -296,6 +296,13 @@ public class SnoodsLauncherActivity extends Activity {
         mInterstitialAd.setAdUnitId("ca-app-pub-5266434890042499/8490868119");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+            Log.d("TAG", "Anúncio carregado.");
+        } else {
+            Log.d("TAG", "Anúncio não carregado.");
+        }
+
         settingStorage = getSharedPreferences("ru.exlmoto.snood21", MODE_PRIVATE);
         // Check the first run
         boolean firstRun = false;
@@ -335,11 +342,6 @@ public class SnoodsLauncherActivity extends Activity {
             @Override
             public void onClick(View v) {
                 writeSettings();
-                        if (mInterstitialAd.isLoaded()) {
-                            mInterstitialAd.show();
-                        } else {
-                            Log.d("TAG", "The interstitial wasn't loaded yet.");
-                        }
 
                 Intent intent = new Intent(v.getContext(), SnoodsGameActivity.class);
                 startActivity(intent);
