@@ -22,7 +22,7 @@
 ** SOFTWARE.
 ************************************************************************************/
 
-package ru.exlmoto.snood21;
+package ru.raulkaio.snood21;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -39,7 +39,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Random;
 
-import ru.exlmoto.snood21.SnoodsLauncherActivity.SnoodsSettings;
+import ru.raulkaio.snood21.SnoodsLauncherActivity.SnoodsSettings;
 
 public class SnoodsSurfaceView extends SurfaceView
         implements SurfaceHolder.Callback, Runnable {

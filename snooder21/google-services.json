@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "474057173118",
-    "firebase_url": "https://solitairesnooder21motorola.firebaseio.com",
-    "project_id": "solitairesnooder21motorola",
-    "storage_bucket": "solitairesnooder21motorola.appspot.com"
+    "project_number": "1013685298937",
+    "firebase_url": "https://retrogamesnooder21.firebaseio.com",
+    "project_id": "retrogamesnooder21",
+    "storage_bucket": "retrogamesnooder21.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:474057173118:android:dbaadfe38d55d927",
+        "mobilesdk_app_id": "1:1013685298937:android:d7abc42615dadcc0",
         "android_client_info": {
-          "package_name": "ru.exlmoto.snood21"
+          "package_name": "ru.raulkaio.snood21"
         }
       },
       "oauth_client": [
         {
-          "client_id": "474057173118-sg8d1s88htvb00dtee98r9r5rchhcem9.apps.googleusercontent.com",
+          "client_id": "1013685298937-qoo617o4049qchfi8t0bqe9el6fip984.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBW_dOH_krHPnfZdh41i_DPA1yLpynami4"
+          "current_key": "AIzaSyCQh7z5oJ44-8Q8-JzDc4Z3Y411XXJ4eZc"
         }
       ],
       "services": {

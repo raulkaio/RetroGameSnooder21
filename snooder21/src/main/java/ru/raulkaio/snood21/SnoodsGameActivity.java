@@ -22,7 +22,7 @@
 ** SOFTWARE.
 ************************************************************************************/
 
-package ru.exlmoto.snood21;
+package ru.raulkaio.snood21;
 
 import android.app.Activity;
 import android.media.AudioManager;
@@ -32,7 +32,7 @@ import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.Toast;
 
-import ru.exlmoto.snood21.SnoodsLauncherActivity.SnoodsSettings;
+import ru.raulkaio.snood21.SnoodsLauncherActivity.SnoodsSettings;
 
 public class SnoodsGameActivity extends Activity {
 

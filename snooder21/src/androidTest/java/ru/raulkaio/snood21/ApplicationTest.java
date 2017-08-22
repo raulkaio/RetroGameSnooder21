@@ -1,4 +1,4 @@
-package ru.exlmoto.snood21;
+package ru.raulkaio.snood21;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

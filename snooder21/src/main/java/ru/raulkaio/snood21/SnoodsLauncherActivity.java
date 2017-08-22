@@ -22,7 +22,7 @@
 ** SOFTWARE.
 ************************************************************************************/
 
-package ru.exlmoto.snood21;
+package ru.raulkaio.snood21;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,6 +32,7 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,12 +45,27 @@ import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
+import java.util.concurrent.TimeUnit;
+
 public class SnoodsLauncherActivity extends Activity {
+
+    // VARIÁVEIS DO AD BANNER
+    private AdView mAdView;
+
+    // VARIÁVEIS DO AD INTERESTIAL
+    private static final long GAME_LENGTH_MILLISECONDS = 3000;
+    private InterstitialAd mInterstitialAd;
+    private CountDownTimer mCountDownTimer;
+    private boolean mGameIsInProgress;
+    private long mTimerMilliseconds;
 
     public static final int THEME_MOTO = 0;
     public static final int THEME_PAPER = 1;
@@ -116,8 +132,6 @@ public class SnoodsLauncherActivity extends Activity {
 
     private static Vibrator vibrator = null;
     private static SoundPool soundPool = null;
-
-    private InterstitialAd mInterstitialAd;
 
     public void fillSettingsByLayout() {
         SnoodsSettings.vibration = vibrationCheckBox.isChecked();
@@ -292,18 +306,28 @@ public class SnoodsLauncherActivity extends Activity {
 
         setContentView(R.layout.activity_snoods_launcher);
 
+        // IMPLEMENTAÇÃO DO AD BANNER
+        MobileAds.initialize(this, "ca-app-pub-5266434890042499~4198740634");
+        mAdView = (AdView) findViewById(R.id.ad_view);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(adRequest);
+
+        // IMPLEMENTAÇÃO DO AD INTERESTIAL
+        MobileAds.initialize(this, "ca-app-pub-5266434890042499~4198740634");
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-5266434890042499/8490868119");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdUnitId(getString(R.string.ad_unit_id));
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                startGame();
+            }
+        });
+        startGame();
+        showInterstitial();
 
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-            Log.d("TAG", "Anúncio carregado.");
-        } else {
-            Log.d("TAG", "Anúncio não carregado.");
-        }
-
-        settingStorage = getSharedPreferences("ru.exlmoto.snood21", MODE_PRIVATE);
+        settingStorage = getSharedPreferences("ru.raulkaio.snood21", MODE_PRIVATE);
         // Check the first run
         boolean firstRun = false;
         if (settingStorage.getBoolean("firstRun", true)) {
@@ -383,6 +407,18 @@ public class SnoodsLauncherActivity extends Activity {
                 // Nothing here
             }
         });
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-5266434890042499/7079877231");
+        mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("F89F390ADF4C302C774D4F394AAC7731").build());
+        mInterstitialAd.show();
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+            Log.d("ADS", "Anúncio carregado.");
+        } else {
+            Log.d("ADS", "Anúncio não carregado.");
+        }
     }
 
     // Prevent dialog dismiss when orientation changes
@@ -403,7 +439,84 @@ public class SnoodsLauncherActivity extends Activity {
     @Override
     protected void onDestroy() {
         writeSettings();
-
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
         super.onDestroy();
+    }
+
+    //---------------------------------//
+    // IMPLEMENTAÇÃO DO AD INTERESTIAL //
+    //---------------------------------//
+
+    private void createTimer(final long milliseconds) {
+        // Create the game timer, which counts down to the end of the level
+        // and shows the "retry" button.
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
+
+        mCountDownTimer = new CountDownTimer(milliseconds, 50) {
+            @Override
+            public void onTick(long millisUnitFinished) {
+                mTimerMilliseconds = millisUnitFinished;
+            }
+
+            @Override
+            public void onFinish() {
+                mGameIsInProgress = false;
+            }
+        };
+    }
+
+    @Override
+    public void onResume() {
+        // Start or resume the game.
+        super.onResume();
+
+        if (mGameIsInProgress) {
+            resumeGame(mTimerMilliseconds);
+        }
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        // Cancel the timer if the game is paused.
+        mCountDownTimer.cancel();
+        super.onPause();
+    }
+
+    private void showInterstitial() {
+        // Show the ad if it's ready. Otherwise toast and restart the game.
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Toast.makeText(this, "O Ad não carregou ainda", Toast.LENGTH_SHORT).show();
+            startGame();
+        }
+    }
+
+    private void startGame() {
+        // Request a new ad if one isn't already loaded, hide the button, and kick off the timer.
+        if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mInterstitialAd.loadAd(adRequest);
+        }
+
+        resumeGame(GAME_LENGTH_MILLISECONDS);
+    }
+
+    private void resumeGame(long milliseconds) {
+        // Create a new timer for the correct length and start it.
+        mGameIsInProgress = true;
+        mTimerMilliseconds = milliseconds;
+        createTimer(milliseconds);
+        mCountDownTimer.start();
     }
 }

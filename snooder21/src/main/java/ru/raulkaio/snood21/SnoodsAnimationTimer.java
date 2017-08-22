@@ -22,7 +22,7 @@
 ** SOFTWARE.
 ************************************************************************************/
 
-package ru.exlmoto.snood21;
+package ru.raulkaio.snood21;
 
 import android.graphics.Bitmap;
 import android.os.CountDownTimer;

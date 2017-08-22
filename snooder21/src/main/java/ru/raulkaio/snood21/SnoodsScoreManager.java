@@ -22,7 +22,7 @@
 ** SOFTWARE.
 ************************************************************************************/
 
-package ru.exlmoto.snood21;
+package ru.raulkaio.snood21;
 
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -30,7 +30,7 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-import ru.exlmoto.snood21.SnoodsLauncherActivity.SnoodsSettings;
+import ru.raulkaio.snood21.SnoodsLauncherActivity.SnoodsSettings;
 
 public class SnoodsScoreManager {
 
